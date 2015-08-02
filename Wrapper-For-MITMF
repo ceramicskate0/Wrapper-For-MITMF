@@ -8,6 +8,7 @@ menuOption=0;
 interface="eth0"
 
 def WriteMainMenu():
+    os.system("clear")
     print"	___________________________________________"
     print"	|         	***MAIN MENU***         	|"
     print"	|                                     	|"
@@ -19,6 +20,7 @@ def WriteMainMenu():
     return9
     
 def WriteMenuOptions():
+    os.system("clear")
     print"	_________________________________________"
     print"	|       	MAIN ATTACK OPTIONS     	|"
     print"	|_______________________________________|"
@@ -62,6 +64,7 @@ WriteMenuOptions()
 
 while True:
     menuOption=GetMenuSelection()
+    os.system("clear")
     if menuOption=="1":
    	 os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip)
    	 break
