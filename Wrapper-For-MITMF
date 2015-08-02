@@ -1,28 +1,31 @@
 #!/usr/bin/python
 
+import os
+
 ip="127.0.0.1"
 gateway="127.0.0.1"
 menuOption=0;
 interface="eth0"
 
 def WriteMainMenu():
-    print"___________________________________________"
-    print"|         	***MAIN MENU***         	|"
-    print"|                                     	|"
-    print"|NOTE:Here is how its gonna work. You give|"
-    print"|me the target IP, Gateway, and what you  |"
-    print"|want to do and ill do the rest       	|"
-    print"|_________________________________________|"
+    print"	___________________________________________"
+    print"	|         	***MAIN MENU***         	|"
+    print"	|                                     	|"
+    print"	|NOTE:Here is how its gonna work. You give|"
+    print"	|me the target IP, Gateway, and what you  |"
+    print"	|want to do and ill do the rest. If the   |"
+    print"	|program dies just restart.           	|"
+    print"	|_________________________________________|"
     return
     
 def WriteMenuOptions():
-    print"_________________________________________"
-    print"|       	MAIN ATTACK OPTIONS     	|"
-    print"|_______________________________________|"
-    print"|1. Arp-Spoof   	2. Arp-Reply-Spoof  |"
-    print"|3. Browser-Profile 4. DHCP-ShellShock  |"
-    print"|5. ICMP-Spoof                      	|"
-    print"|_______________________________________|"
+    print"	_________________________________________"
+    print"	|       	MAIN ATTACK OPTIONS     	|"
+    print"	|_______________________________________|"
+    print"	|1. Arp-Spoof   	2. Arp-Reply-Spoof  |"
+    print"	|3. Browser-Profile 4. DHCP-ShellShock  |"
+    print"	|5. ICMP-Spoof                      	|"
+    print"	|_______________________________________|"
     return
     
 def GetIP():
@@ -34,7 +37,10 @@ def GetGateway():
     return gateway
     
 def GetInterface():
-    interface= raw_input("\nPlease Enter Targets Gateway or router:")
+    print "-----------------------------------------"
+    os.system("ip link show")
+    print "-----------------------------------------"
+    interface= raw_input("\nPlease Enter Interface:")
     return interface    
     
 def GetMenuSelection():
@@ -42,18 +48,17 @@ def GetMenuSelection():
     return menuOption
     
 def WrtieIntro():    
-    print "-----------------------------------------"
-    print "Welcome to the MITMF Script Kiddy Wrapper"
-    print "-----------------------------------------"
+    print "-----------------------------------------------"
+    print "***Welcome to the MITMF Script Kiddy Wrapper***"
+    print "-----------------------------------------------"
 
 WrtieIntro()
 WriteMainMenu()
+os.system("ip addr")
 GetIP()
 GetGateway()
 GetInterface()
 WriteMenuOptions()
-
-import os
 
 while True:
     menuOption=GetMenuSelection()
@@ -77,3 +82,8 @@ while True:
    	 print"Invalid Selection slick, Try again, and get it right this time."
    	 WriteMenuOptions()
 print "STARTING PROGRAM HAPPY TESTING :D \n\n"
+    
+
+
+
+
