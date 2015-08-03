@@ -2,7 +2,7 @@
 Makes using MITMF easier
 
 #Pre Req:
-1. Install MITMF.py (see his repo for details)
+1. Install MITMF.py (see his repo for details)(https://github.com/byt3bl33d3r/MITMf)
 2. Make sure it works on your machine
 
 #To Use:
