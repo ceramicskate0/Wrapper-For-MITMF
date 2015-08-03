@@ -1,5 +1,5 @@
-# Wrapper-For-MITMF
-Makes using MITMF easier
+# What is a Wrapper-For-MITMF?
+Its designed to make using MITMF easier for people who dont use it often.
 
 #Pre Req:
 1. Install MITMF.py (see his repo for details)(https://github.com/byt3bl33d3r/MITMf)
