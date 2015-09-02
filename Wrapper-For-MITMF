@@ -112,7 +112,8 @@ def ShowCustomeBuildMenu():
 	print"    |8. Browser Profiler     9.  Java Applet|"
    #print"    |10.Javascript Inject    11. HTML Inject|"
 	print"    |_______________________________________|"
-	print"    |      ----PRESS 'q' to exit---         |"
+	print"    |       ----PRESS 'r' to run---         |"
+	print"    | ----PRESS 'q' to exit and not run---- |"
 	print"    |_______________________________________|"
 
 def CustomeMenuAttackStringBUild():	
@@ -151,6 +152,8 @@ def CustomeMenuAttackStringBUild():
 			print("\nYOUR COMMAND LOOKS LIKE: \'mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
 		elif MenuSelection == "q": 
 			break
+		elif MenuSelection == "r": 
+			break
 		else:
 			print"What tha **** did you just enter?!"
 		count=count+1
@@ -159,7 +162,15 @@ def CustomeMenuAttackStringBUild():
 		os.system("clear")
 		print "\nIncomplete command. Retry...\n"
 		CustomeMenuAttackStringBUild()
-	else:
+	elif MenuSelection=="q":
+		WrtieIntro()
+		WriteMainMenu()
+		os.system("ip addr")
+		GetIP()
+		GetGateway()
+		GetInterface()
+		FigureOutHowToAttack()
+	elif MenuSelection=="r":
 		os.system("mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
 		
 	
