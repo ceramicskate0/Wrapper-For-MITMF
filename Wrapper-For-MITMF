@@ -163,6 +163,7 @@ def CustomeMenuAttackStringBUild():
 		print "\nIncomplete command. Retry...\n"
 		CustomeMenuAttackStringBUild()
 	elif MenuSelection=="q":
+		os.system("clear")
 		WrtieIntro()
 		WriteMainMenu()
 		os.system("ip addr")
