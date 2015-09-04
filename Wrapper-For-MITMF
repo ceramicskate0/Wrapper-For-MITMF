@@ -18,7 +18,7 @@ def GetInterface():
 	WrtieIntro()
 	WriteMainMenu()
 	print"-----------------------------------------"
-	os.system("ip link show")
+	os.system("iwconfig")
 	print("-----------------------------------------")
 	interface= raw_input("\nPlease Enter Interface:")
 	return interface 
